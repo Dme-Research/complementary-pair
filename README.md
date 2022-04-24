@@ -1,7 +1,9 @@
 # complementary-pair
-2つのライブラリ間で、相補鎖を見つける
+「目的」　2つのライブラリ間で、相補鎖を見つける
+
 
 使い方
+
 complementary_analysis.py をダウンロード
 
 2つの比べたいライブラリを用意（.fasta形式、ヘッダーは除いておく）
