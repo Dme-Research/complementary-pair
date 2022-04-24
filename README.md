@@ -1,8 +1,10 @@
 # complementary-pair
-「目的」　2つのライブラリ間で、相補鎖を見つける
+「目的」　
+
+2つのライブラリ間で、相補鎖を見つける
 
 
-使い方
+「使い方」
 
 complementary_analysis.py をダウンロード
 
