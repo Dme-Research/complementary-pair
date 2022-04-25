@@ -10,8 +10,8 @@ complementary_analysis.py をダウンロード
 
 2つの比べたいライブラリを用意（.fasta形式、ヘッダーは除いておく）
 
-プログラムと2つのライブラリデータを同じフォルダーに置く。
+プログラムと2つのライブラリデータを同じフォルダに置く。
 
-そのフォルダーにて、ターミナルを開き、以下のように実行する。
+そのフォルダにて、ターミナルを開き、以下の例のように実行する。
 
-python complementary_analysis.py input1.fasta input2.fasta
+python complementary_analysis.py library_1.fasta library_t2.fasta
