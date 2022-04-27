@@ -1,0 +1,87 @@
+#!/usr/bin/env python
+import sys
+
+args = sys.argv
+
+Line_Count = 0
+piRNA_Count = 0
+siRNA_Count = 0
+Pair_Count = 0
+
+siRNA_ID_list =[]
+piRNA_ID_list =[]
+siRNA_seq_list =[]
+piRNA_seq_list =[]
+
+# 置き換え表の作成
+# 置換する文字をつなげて記述します
+table_RC = str.maketrans('GATCU', 'CTAGA') #文字置き換え用のテーブル, G->C, A->T, T->A, C->G, U->A
+table_UT = str.maketrans('U', 'T') #文字置き換え用のテーブル,  U->T
+
+input_siRNA = args[1]
+input_piRNA = args[2]
+
+output_file = "complementary_analysis_result.txt"
+#print(output_file)
+
+file_out = open(output_file, "w") #.txtファイルを書き込みモードで作成
+file_out.writelines("siRNA_ID" + "\t" + "siRNA_seq_10nt" + "\t")
+file_out.writelines("Pair_Count" + "\n")
+
+### store piRNA library in memory ####
+for piRNA_line in open(input_piRNA, "r"): # .txtファイルを１行ごとに読み込む
+	piRNA_data = piRNA_line[:-1].split('\t')
+
+	Line_Count += 1     # 行数をカウントアップ
+
+	if (">" in piRNA_data[0]):
+		piRNA_ID_list.append(piRNA_data[0])
+		#print(piRNA_ID_list[piRNA_Count])
+	else:
+		piRNA_seq_data = piRNA_data[0][0:10] #Store piRNA 1-10nt sequence
+		#print(piRNA_seq_data)
+		piRNA_seq_data_UT = piRNA_seq_data.translate(table_UT) #U->T
+		piRNA_seq_list.append(piRNA_seq_data_UT) #Store piRNA 1-10nt sequence
+		#print(piRNA_seq_list[piRNA_Count])
+		#file_out.writelines(piRNA_seq_list[piRNA_Count])
+		piRNA_Count += 1
+
+
+for siRNA_line in open(input_siRNA, "r"): # .txtファイルを１行ごとに読み込む
+	siRNA_data = siRNA_line[:-1].split('\t')
+
+	Line_Count += 1     # 行数をカウントアップ
+
+	if (">" in siRNA_data[0]):
+		siRNA_ID_list.append(siRNA_data[0])
+		#print(siRNA_ID_list[siRNA_Count])
+	else:
+		siRNA_seq_list.append(siRNA_data[0][0:10])
+		#print(siRNA_seq_list[siRNA_Count])
+
+		reverse = siRNA_seq_list[siRNA_Count][::-1]
+		#print(reverse)
+
+		reverse_complment = reverse.translate(table_RC)
+		#print(reverse_complment)
+		for i in range(piRNA_Count):
+			if (reverse_complment == piRNA_seq_list[i]):
+				Pair_Count += 1
+		#print(siRNA_ID_list[siRNA_Count], Pair_Count)
+		if Pair_Count > 0:
+			print(siRNA_ID_list[siRNA_Count], Pair_Count)
+			file_out.writelines(siRNA_ID_list[siRNA_Count].split('>')[1] + "\t")
+			file_out.writelines(siRNA_seq_list[siRNA_Count] + "\t")
+			file_out.writelines(str(Pair_Count) + "\n")
+		siRNA_Count += 1
+
+	Pair_Count = 0
+
+file_out.close() # 書き込み用のファイルを閉じる
+
+print("total_line = " + str(Line_Count))
+print("piRNA_count = " + str(piRNA_Count))
+print("siRNA_count = " + str(siRNA_Count))
+print("Finish!")
+
+
