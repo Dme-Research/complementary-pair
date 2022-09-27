@@ -5,8 +5,7 @@
 
 ---
 Version1_4  
-Library_1 の5'末端側９〜１塩基と、 Library_2 の5'末端側２−１０塩基とを比べて、完全に相補的であるペアを出力。
-ただし、GU、あるいはUGペアも相補的であるとする。GU、UGペアの数も出力する。
+This program compares the 9th-1st base from the 5' end of library_1 with the 2nd-10th base from the 5' end of library_2, and find a pair that is fully complementary. A wobble base-pair "G-U" is also considered to be complementary. The number of GU pair is also output.
 
 
 Version1_3  
