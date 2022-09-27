@@ -1,7 +1,7 @@
 # complementary-pair
 
 
-**目的：　2つのライブラリ間で、5'末端側の相補ペアを見つける**
+**Objective: To find a complementary pair on the 5' end between two RNA libraries**
 
 ---
 Version1_4  
