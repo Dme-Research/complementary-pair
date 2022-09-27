@@ -10,14 +10,14 @@ This program compares the 9th-1st base from the 5' end of library_1 with the 2nd
 
 ---
 
-**使い方**
+**How to use**
 
-complementary_analysis.py をダウンロード
+Download complementary_analysis.py
 
-2つの比べたいライブラリを用意する。　fasta形式で、ヘッダーは除く。大文字を使用する。
+Prepare the two RNA libraries to be compared in fasta format. Use uppercase letters for nucleotides and exclude any headers.
 
-プログラムと2つのライブラリデータを同じフォルダに置く。
+Place the program and the two RNA library data in the same folder.
 
-そのフォルダにて、ターミナルを開き、以下の例のように実行する。
+In that folder, open a terminal and execute as in the following example.
 
 python complementary_analysis.py library_1.fasta library_2.fasta
